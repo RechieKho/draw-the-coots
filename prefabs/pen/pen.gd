@@ -4,6 +4,7 @@ signal on_stroke(point)
 
 onready var pen_tip := $PenTip
 onready var animation_player := $AnimationPlayer
+onready var particles := $Particles
 
 var is_grabbing := false
 var can_grab := false
@@ -20,7 +21,9 @@ func _on_Pen_mouse_exited():
 func set_is_grabbing(value: bool):
 	is_grabbing = value
 	pen_tip.monitorable = value
-	if value: animation_player.play("DRAW")
+	if value: 
+		animation_player.play("DRAW")
+		particles.emitting = true
 	else: animation_player.play_backwards("DRAW")
 
 func _unhandled_input(event): 

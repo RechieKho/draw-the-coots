@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://prefabs/pen/pen.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/pen/pen.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/pen/pen-ink.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 28.0713
@@ -94,6 +95,14 @@ tracks/1/keys = {
 "values": [ 90.0 ]
 }
 
+[sub_resource type="Curve" id=6]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.0184564, -83.9264 ), 0.0, 0.0, 0, 0, Vector2( 0.354027, -4.41718 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.307047, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.548658, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
 [node name="Pen" type="Area2D"]
 monitoring = false
 monitorable = false
@@ -123,6 +132,23 @@ root_node = NodePath("../Graphics")
 anims/ACTIVE = SubResource( 4 )
 anims/DRAW = SubResource( 3 )
 anims/RESET = SubResource( 5 )
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.1
+local_coords = false
+texture = ExtResource( 3 )
+direction = Vector2( -1, -1 )
+gravity = Vector2( 0, 980 )
+initial_velocity = 150.0
+angle_curve = SubResource( 6 )
+scale_amount = 0.5
+scale_amount_curve = SubResource( 7 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_Pen_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Pen_mouse_exited"]
