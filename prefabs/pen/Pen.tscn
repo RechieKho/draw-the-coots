@@ -104,6 +104,7 @@ _data = [ Vector2( 0.0184564, -83.9264 ), 0.0, 0.0, 0, 0, Vector2( 0.354027, -4.
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.307047, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.548658, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Pen" type="Area2D"]
+collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource( 1 )
