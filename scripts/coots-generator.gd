@@ -22,6 +22,7 @@ func generate_ellipse(center: Vector2, segments: int, a: float, b: float) -> Poo
 		else:
 			points.push_back(Vector2(x, -y) + center) # upper point
 			points.insert(0, Vector2(x, y) + center) # lower point
+	points.push_back(points[0])
 	return points
 
 func generate_coots_shape(center: Vector2, size: float, fatness: float, complexity: float) -> PoolVector2Array:
