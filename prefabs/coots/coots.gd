@@ -48,6 +48,8 @@ func reduce_anger():
 	animation_player.play_backwards(anger_animation_map[anger_state])
 	anger_state = clamp(anger_state - 1, 0, len(anger_animation_map))
 
+func increase_patience(amount: float): set_patience(patience + amount)
+
 func set_patience(value : float):
 	patience = clamp(value, 0, max_patience)
 	var patience_percentage := patience / max_patience
