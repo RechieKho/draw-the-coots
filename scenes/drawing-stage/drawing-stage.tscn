@@ -1,0 +1,182 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
+[ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prefabs/coots/coots.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/drawing-stage/coots-patience-meter.gd" type="Script" id=4]
+[ext_resource path="res://scenes/drawing-stage/health-bar.gd" type="Script" id=5]
+[ext_resource path="res://scenes/drawing-stage/bitten.gd" type="Script" id=6]
+[ext_resource path="res://assets/graphics/drawing-stage-background/drawing-stange-background.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/Quicksand/static/Quicksand-SemiBold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/graphics/bitten/danger-strips.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/bitten/coots-biting.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.847059, 0.847059, 0.847059, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.803922 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 8 )
+
+[sub_resource type="Theme" id=3]
+Label/colors/font_color = Color( 0.847059, 0.847059, 0.847059, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = SubResource( 1 )
+Label/styles/normal = null
+ProgressBar/styles/bg = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.894118, 0.431373, 0.960784, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.8, 0.203922, 0.694118, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.952941, 0.294118, 0.294118, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.796078, 0.105882, 0.105882, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="DrawingStage" type="Node2D"]
+script = ExtResource( 1 )
+pen_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="Background" type="Sprite" parent="."]
+show_behind_parent = true
+position = Vector2( 640, 358 )
+texture = ExtResource( 7 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Bitten" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.196078, 0.196078, 0.658824 )
+script = ExtResource( 6 )
+tween_duration = 0.25
+
+[node name="Contents" type="Control" parent="UI/Bitten"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1000.0
+margin_bottom = -1000.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="DangerStrips" type="TextureRect" parent="UI/Bitten/Contents"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -378.0
+margin_top = -289.0
+margin_right = 328.0
+margin_bottom = 242.0
+texture = ExtResource( 9 )
+
+[node name="Bitting" type="TextureRect" parent="UI/Bitten/Contents"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 130.0
+margin_top = -100.0
+margin_right = 203.0
+margin_bottom = -52.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="BitingTimer" type="Timer" parent="UI/Bitten"]
+one_shot = true
+
+[node name="ProgressBars" type="Control" parent="UI"]
+anchor_right = 1.0
+margin_left = 72.0
+margin_top = 22.0
+margin_right = -72.0
+margin_bottom = 58.0
+mouse_filter = 2
+theme = SubResource( 3 )
+
+[node name="CootsPatienceMeter" type="ProgressBar" parent="UI/ProgressBars"]
+anchor_right = 0.472
+anchor_bottom = 1.0
+margin_right = -0.192017
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 4 )
+percent_visible = false
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="UI/ProgressBars/CootsPatienceMeter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.478431, 0.0862745, 0.415686, 1 )
+text = "Coots' Patience"
+align = 1
+valign = 1
+
+[node name="HealthBar" type="ProgressBar" parent="UI/ProgressBars"]
+anchor_left = 0.523
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.127991
+margin_right = 9.87207
+margin_bottom = 10.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 5 )
+value = 100.0
+percent_visible = false
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="UI/ProgressBars/HealthBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.34902, 0.0196078, 0.0196078, 1 )
+text = "Health"
+align = 1
+valign = 1
+
+[node name="Coots" parent="." instance=ExtResource( 3 )]
+patience_reduce_rate = 30.0
+patience_increase_rate = 5.0
+
+[node name="Pen" parent="." instance=ExtResource( 2 )]
+position = Vector2( 432, 330 )
+
+[connection signal="on_hurting" from="UI/Bitten" to="UI/ProgressBars/HealthBar" method="reduce_health"]
+[connection signal="on_relieving" from="UI/Bitten" to="Coots" method="increase_patience"]
+[connection signal="on_start_biting" from="UI/Bitten" to="Pen" method="set_is_grabbing" binds= [ false ]]
+[connection signal="timeout" from="UI/Bitten/BitingTimer" to="UI/Bitten" method="set_biting" binds= [ false ]]
+[connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]
+[connection signal="on_patience_changed" from="Coots" to="UI/ProgressBars/CootsPatienceMeter" method="update_patience_meter"]
+[connection signal="on_stroke" from="Pen" to="." method="add_stroke_point"]
