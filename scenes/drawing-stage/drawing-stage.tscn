@@ -203,6 +203,15 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="Markings" type="CanvasLayer" parent="."]
+
+[node name="PaperRegion" type="Control" parent="Markings"]
+margin_left = 229.0
+margin_top = 110.0
+margin_right = 1051.0
+margin_bottom = 572.0
+mouse_filter = 2
+
 [node name="PenDetectors" type="Node2D" parent="."]
 visible = false
 script = ExtResource( 11 )
@@ -231,6 +240,7 @@ patience_increase_rate = 5.0
 
 [node name="Pen" parent="." instance=ExtResource( 2 )]
 position = Vector2( 432, 330 )
+paper_region_path = NodePath("../Markings/PaperRegion")
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 0
@@ -248,3 +258,5 @@ autostart = true
 [connection signal="on_patience_changed" from="Coots" to="UI/ProgressBars/CootsPatienceMeter" method="update_patience_meter"]
 [connection signal="on_stroke" from="Pen" to="." method="add_stroke_point"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Pen"]
