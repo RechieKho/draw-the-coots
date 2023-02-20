@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "CootsShapeGenerator",
 "language": "GDScript",
 "path": "res://scripts/coots-generator.gd"
+}, {
+"base": "Reference",
+"class": "Math",
+"language": "GDScript",
+"path": "res://scripts/math.gd"
 } ]
 _global_script_class_icons={
-"CootsShapeGenerator": ""
+"CootsShapeGenerator": "",
+"Math": ""
 }
 
 [application]
