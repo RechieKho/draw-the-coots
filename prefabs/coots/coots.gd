@@ -81,7 +81,7 @@ func _process(delta):
 
 func _draw():
 	if len(shape) < 3: return
-	draw_colored_polygon(shape, Color.white, [], body_texture)
+	draw_colored_polygon(shape, Color.whitesmoke, [], body_texture)
 	draw_polyline(shape, outline_color, outline_width, true)
 
 

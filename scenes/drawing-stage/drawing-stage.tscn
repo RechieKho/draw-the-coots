@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/graphics/bitten/coots-biting.png" type="Texture" id=10]
 [ext_resource path="res://scenes/drawing-stage/pen-detectors.gd" type="Script" id=11]
 [ext_resource path="res://assets/fonts/Quicksand/static/Quicksand-Bold.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://scenes/drawing-stage/time-left-counter.gd" type="Script" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -203,6 +204,29 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="TimeLeftCounter" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -328.0
+margin_top = -111.0
+margin_right = -196.0
+margin_bottom = -67.0
+custom_colors/font_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "600s"
+align = 1
+valign = 1
+script = ExtResource( 13 )
+
+[node name="DrawingTimer" type="Timer" parent="UI/TimeLeftCounter"]
+process_mode = 0
+wait_time = 600.0
+one_shot = true
+autostart = true
+
 [node name="Markings" type="CanvasLayer" parent="."]
 
 [node name="PaperRegion" type="Control" parent="Markings"]
@@ -235,6 +259,7 @@ monitorable = false
 shape = SubResource( 7 )
 
 [node name="Coots" parent="." instance=ExtResource( 3 )]
+position = Vector2( 634, 345 )
 patience_reduce_rate = 30.0
 patience_increase_rate = 5.0
 
@@ -242,21 +267,15 @@ patience_increase_rate = 5.0
 position = Vector2( 432, 330 )
 paper_region_path = NodePath("../Markings/PaperRegion")
 
-[node name="Timer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 600.0
-one_shot = true
-autostart = true
-
 [connection signal="on_hurting" from="UI/Bitten" to="UI/ProgressBars/HealthBar" method="reduce_health"]
 [connection signal="on_relieving" from="UI/Bitten" to="Coots" method="increase_patience"]
 [connection signal="on_start_biting" from="UI/Bitten" to="Pen" method="set_is_grabbing" binds= [ false ]]
 [connection signal="timeout" from="UI/Bitten/BitingTimer" to="UI/Bitten" method="set_biting" binds= [ false ]]
+[connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="." method="_on_Timer_timeout"]
 [connection signal="area_exited" from="PenDetectors/AwayDetector" to="." method="_on_AwayDetector_area_exited"]
 [connection signal="area_entered" from="PenDetectors/ReturnDetector" to="." method="_on_ReturnDetector_area_entered"]
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]
 [connection signal="on_patience_changed" from="Coots" to="UI/ProgressBars/CootsPatienceMeter" method="update_patience_meter"]
 [connection signal="on_stroke" from="Pen" to="." method="add_stroke_point"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="Pen"]

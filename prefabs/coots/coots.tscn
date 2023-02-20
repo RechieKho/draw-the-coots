@@ -231,7 +231,6 @@ tracks/9/keys = {
 }
 
 [node name="Coots" type="Node2D"]
-position = Vector2( 634, 368 )
 script = ExtResource( 1 )
 outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
 outline_width = 5.0
