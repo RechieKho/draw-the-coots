@@ -27,6 +27,7 @@ func generate_ellipse(center: Vector2, segments: int, a: float, b: float) -> Poo
 
 func generate_coots_shape(center: Vector2, size: float, fatness: float, complexity: float) -> PoolVector2Array:
 	var coots : PoolVector2Array = [] 
+	noise.seed = randi()
 	# apply noise
 	for point in generate_ellipse(center, 50, size * fatness, size):
 		coots.append(point + Vector2.DOWN * noise.get_noise_2dv(point) * complexity)

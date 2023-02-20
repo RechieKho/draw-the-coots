@@ -40,6 +40,8 @@ func _on_Detector_area_entered(area):
 func _on_Detector_area_exited(area):
 	if area.name == "PenTip": is_angry = false
 
+func get_area(): return Math.calculate_area(shape)
+
 func increase_anger():
 	anger_state = clamp(anger_state + 1, 0, len(anger_animation_map))
 	animation_player.play(anger_animation_map[anger_state])
@@ -71,7 +73,7 @@ func set_patience(value : float):
 func update_shape():
 	shape = shape_gen.generate_coots_shape(Vector2.ZERO, size, fatness, complexity)
 	collision_polygon.polygon = shape
-	update()
+	call_deferred("update")
 
 func _process(delta):
 	if is_angry:

@@ -236,7 +236,7 @@ script = ExtResource( 1 )
 outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
 outline_width = 5.0
 fatness = 1.511
-complexity = 40.625
+complexity = 30.0
 patience_reduce_rate = 29.539
 
 [node name="Graphics" type="Node2D" parent="."]
