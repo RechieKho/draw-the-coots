@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://scenes/drawing-stage/coots-patience-meter.gd" type="Script" id=4]
 [ext_resource path="res://scenes/drawing-stage/health-bar.gd" type="Script" id=5]
 [ext_resource path="res://scenes/drawing-stage/bitten.gd" type="Script" id=6]
-[ext_resource path="res://assets/graphics/drawing-stage-background/drawing-stange-background.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/drawing-stage-background/drawing-stage-background.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/Quicksand/static/Quicksand-SemiBold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/graphics/bitten/danger-strips.png" type="Texture" id=9]
 [ext_resource path="res://assets/graphics/bitten/coots-biting.png" type="Texture" id=10]
+[ext_resource path="res://scenes/drawing-stage/pen-detectors.gd" type="Script" id=11]
+[ext_resource path="res://assets/fonts/Quicksand/static/Quicksand-Bold.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -26,7 +28,7 @@ expand_margin_left = 5.0
 expand_margin_right = 5.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
-shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.803922 )
+shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.596078 )
 shadow_size = 1
 shadow_offset = Vector2( 0, 8 )
 
@@ -65,6 +67,25 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="DynamicFont" id=8]
+size = 35
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.847059, 0.847059, 0.847059, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.596078 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 8 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 124.064
+
+[sub_resource type="CircleShape2D" id=7]
+
 [node name="DrawingStage" type="Node2D"]
 script = ExtResource( 1 )
 pen_color = Color( 0.12549, 0.12549, 0.12549, 1 )
@@ -77,6 +98,7 @@ texture = ExtResource( 7 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Bitten" type="ColorRect" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.196078, 0.196078, 0.196078, 0.658824 )
@@ -117,17 +139,18 @@ one_shot = true
 
 [node name="ProgressBars" type="Control" parent="UI"]
 anchor_right = 1.0
-margin_left = 72.0
-margin_top = 22.0
-margin_right = -72.0
-margin_bottom = 58.0
+margin_left = 205.0
+margin_top = 35.0
+margin_right = -205.0
+margin_bottom = 62.0
 mouse_filter = 2
 theme = SubResource( 3 )
 
 [node name="CootsPatienceMeter" type="ProgressBar" parent="UI/ProgressBars"]
 anchor_right = 0.472
-anchor_bottom = 1.0
+anchor_bottom = 1.278
 margin_right = -0.192017
+margin_bottom = -0.00800705
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -166,6 +189,42 @@ text = "Health"
 align = 1
 valign = 1
 
+[node name="DrawingCounter" type="Label" parent="UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 204.0
+margin_top = -111.0
+margin_right = 336.0
+margin_bottom = -67.0
+custom_colors/font_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="PenDetectors" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 11 )
+
+[node name="AwayDetector" type="Area2D" parent="PenDetectors"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PenDetectors/AwayDetector"]
+shape = SubResource( 6 )
+
+[node name="ReturnDetector" type="Area2D" parent="PenDetectors"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PenDetectors/ReturnDetector"]
+shape = SubResource( 7 )
+
 [node name="Coots" parent="." instance=ExtResource( 3 )]
 patience_reduce_rate = 30.0
 patience_increase_rate = 5.0
@@ -173,10 +232,19 @@ patience_increase_rate = 5.0
 [node name="Pen" parent="." instance=ExtResource( 2 )]
 position = Vector2( 432, 330 )
 
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 600.0
+one_shot = true
+autostart = true
+
 [connection signal="on_hurting" from="UI/Bitten" to="UI/ProgressBars/HealthBar" method="reduce_health"]
 [connection signal="on_relieving" from="UI/Bitten" to="Coots" method="increase_patience"]
 [connection signal="on_start_biting" from="UI/Bitten" to="Pen" method="set_is_grabbing" binds= [ false ]]
 [connection signal="timeout" from="UI/Bitten/BitingTimer" to="UI/Bitten" method="set_biting" binds= [ false ]]
+[connection signal="area_exited" from="PenDetectors/AwayDetector" to="." method="_on_AwayDetector_area_exited"]
+[connection signal="area_entered" from="PenDetectors/ReturnDetector" to="." method="_on_ReturnDetector_area_entered"]
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]
 [connection signal="on_patience_changed" from="Coots" to="UI/ProgressBars/CootsPatienceMeter" method="update_patience_meter"]
 [connection signal="on_stroke" from="Pen" to="." method="add_stroke_point"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
