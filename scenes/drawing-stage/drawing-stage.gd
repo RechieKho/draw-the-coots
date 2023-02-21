@@ -7,8 +7,10 @@ onready var coots := $Coots
 onready var pen := $Pen
 onready var pen_detector := $PenDetectors
 onready var drawing_counter := $UI/DrawingCounter
+onready var result := $UI/Result
+onready var health_bar := $UI/ProgressBars/HealthBar
 
-var drawing_results = []
+var drawing_scores = []
 var points : PoolVector2Array = []
 
 func _ready():
@@ -29,7 +31,17 @@ func _on_ReturnDetector_area_entered(area):
 		finish_drawing()
 
 func _on_Timer_timeout():
-	print("It is over.")
+	# Show result.
+	var average_score = 0
+	for score in drawing_scores: average_score += score
+	average_score *= 100.0 / len(drawing_scores)
+	
+	var health_remaining = health_bar.value * 100.0 / health_bar.max_value
+	var coots_patience = coots.patience * 100.0 / coots.max_patience
+	
+	result.show_result(
+		len(drawing_scores), average_score, health_remaining, coots_patience
+	)
 
 func setup_drawing_deferred(): call_deferred("setup_drawing")
 
@@ -43,9 +55,8 @@ func finish_drawing():
 	var drawing_area = Math.calculate_area(points)
 	var coots_area = coots.get_area()
 	var result = 1 - (abs(drawing_area - coots_area) / coots_area)
-	print(result)
-	drawing_results.append(result)
-	drawing_counter.text = str(len(drawing_results))
+	drawing_scores.append(result)
+	drawing_counter.text = str(len(drawing_scores))
 	points.resize(0)
 	setup_drawing_deferred()
 
