@@ -173,12 +173,17 @@ radius = 124.064
 script = ExtResource( 1 )
 pen_color = Color( 0.12549, 0.12549, 0.12549, 1 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
 [node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
 position = Vector2( 640, 358 )
 texture = ExtResource( 7 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="Bitten" type="ColorRect" parent="UI"]
 visible = false
@@ -308,7 +313,7 @@ script = ExtResource( 13 )
 
 [node name="DrawingTimer" type="Timer" parent="UI/TimeLeftCounter"]
 process_mode = 0
-wait_time = 600.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 
@@ -512,6 +517,8 @@ size_flags_vertical = 6
 text = "Exit"
 
 [node name="Markings" type="CanvasLayer" parent="."]
+layer = 0
+visible = false
 
 [node name="PaperRegion" type="Control" parent="Markings"]
 margin_left = 229.0
@@ -559,6 +566,7 @@ paper_region_path = NodePath("../Markings/PaperRegion")
 [connection signal="on_start_biting" from="UI/Bitten" to="Pen" method="set_is_grabbing" binds= [ false ]]
 [connection signal="timeout" from="UI/Bitten/BitingTimer" to="UI/Bitten" method="set_biting" binds= [ false ]]
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="." method="_on_Timer_timeout"]
+[connection signal="button_up" from="UI/Result/Panel/Buttons/RedrawButton" to="UI/Result" method="_on_RedrawButton_button_up"]
 [connection signal="area_exited" from="PenDetectors/AwayDetector" to="." method="_on_AwayDetector_area_exited"]
 [connection signal="area_entered" from="PenDetectors/ReturnDetector" to="." method="_on_ReturnDetector_area_entered"]
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]

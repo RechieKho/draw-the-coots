@@ -18,16 +18,45 @@ _global_script_classes=[ {
 "class": "Math",
 "language": "GDScript",
 "path": "res://scripts/math.gd"
+}, {
+"base": "Node2D",
+"class": "OffsetNode",
+"language": "GDScript",
+"path": "res://prefabs/GFX/Shaker/OffsetNode.gd"
+}, {
+"base": "OffsetNode",
+"class": "ShakeOffset",
+"language": "GDScript",
+"path": "res://prefabs/GFX/Shaker/ShakeOffset.gd"
+}, {
+"base": "Camera2D",
+"class": "SmoothCamera2D",
+"language": "GDScript",
+"path": "res://prefabs/Camera/SmoothCamera2D.gd"
+}, {
+"base": "Reference",
+"class": "SmoothShaderProp",
+"language": "GDScript",
+"path": "res://scripts/smooth-shader-property.gd"
 } ]
 _global_script_class_icons={
 "CootsShapeGenerator": "",
-"Math": ""
+"Math": "",
+"OffsetNode": "",
+"ShakeOffset": "",
+"SmoothCamera2D": "",
+"SmoothShaderProp": ""
 }
 
 [application]
 
 config/name="Draw the Coots"
 config/icon="res://icon.png"
+
+[autoload]
+
+Camera2DUtility="*res://prefabs/Camera/Camera2DUtility.gd"
+GFX="*res://prefabs/GFX/GFX.gd"
 
 [display]
 

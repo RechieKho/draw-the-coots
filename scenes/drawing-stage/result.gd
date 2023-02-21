@@ -75,3 +75,7 @@ func _show_grade(tweener: SceneTreeTween, grade):
 
 func _show_button(tweener: SceneTreeTween):
 	tweener.tween_property(button_section, "modulate", Color.white, tween_duration)
+
+
+func _on_RedrawButton_button_up():
+	GFX.change_scene("res://scenes/drawing-stage/drawing-stage.tscn")
