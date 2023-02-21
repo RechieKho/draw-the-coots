@@ -15,7 +15,7 @@ var can_grab := false
 
 func _on_Pen_mouse_entered(): 
 	can_grab = true
-	animation_player.play("ACTIVE")
+	if not is_grabbing: animation_player.play("ACTIVE")
 
 func _on_Pen_mouse_exited(): 
 	can_grab = false
