@@ -34,7 +34,7 @@ func _on_Timer_timeout():
 	# Show result.
 	var average_score = 0
 	for score in drawing_scores: average_score += score
-	average_score *= 100.0 / len(drawing_scores)
+	if len(drawing_scores): average_score *= 100.0 / len(drawing_scores)
 	
 	var health_remaining = health_bar.value * 100.0 / health_bar.max_value
 	var coots_patience = coots.patience * 100.0 / coots.max_patience
