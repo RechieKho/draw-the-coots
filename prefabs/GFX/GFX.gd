@@ -12,6 +12,7 @@ var distortion_gfxes : GFXES
 var shockwaves_gfx 
 
 var _shaker: ShakeOffset
+var _is_changing_scene := false
 
 ### FUNCTIONS ###
 # --- Publics ---
@@ -46,10 +47,13 @@ func shake_current_camera_in_viewport(
 	_shaker.shake_coefficient = 0.5
 
 func change_scene(resource_path: String):
+	if _is_changing_scene: return
+	_is_changing_scene = true
 	var circle_gfx = circle_gfxes.get_gfx("change_scene")
 	circle_gfx.smooth_circle_size.smoothly_change_to(0.0, TWEEN_DURATION)
 	yield(get_tree().create_timer(TWEEN_DURATION), "timeout")
 	get_tree().change_scene(resource_path)
+	_is_changing_scene = false
 	circle_gfx.smooth_circle_size.smoothly_change_to(1.0, TWEEN_DURATION)
 
 # --- Privates ---
