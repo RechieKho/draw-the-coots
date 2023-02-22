@@ -14,8 +14,6 @@ onready var health_remaining_section := $Panel/Content/HealthRemaining
 onready var health_remaining_value_label := $Panel/Content/HealthRemaining/Value
 onready var coots_patience_section := $Panel/Content/CootsPatience
 onready var coots_patience_value_label := $Panel/Content/CootsPatience/Value
-onready var grade_section := $Panel/Content/Grade
-onready var grade_value_label := $Panel/Content/Grade/Value
 onready var button_section := $Panel/Buttons
 
 func _ready():
@@ -26,7 +24,6 @@ func _ready():
 	average_score_section.modulate = Color.transparent
 	health_remaining_section.modulate = Color.transparent
 	coots_patience_section.modulate = Color.transparent
-	grade_section.modulate = Color.transparent
 	button_section.modulate = Color.transparent
 
 func show_result(
@@ -45,8 +42,6 @@ func show_result(
 	_show_average_score(tweener, average_score)
 	_show_health_remaining(tweener, health_remaining)
 	_show_coots_patience(tweener, coots_patience)
-	# Decide grade
-#	_show_grade(tweener, )
 	_show_button(tweener)
 
 func _show_panel(tweener: SceneTreeTween):
@@ -68,10 +63,6 @@ func _show_health_remaining(tweener: SceneTreeTween, health_remaining):
 func _show_coots_patience(tweener: SceneTreeTween, coots_patience):
 	tweener.tween_property(coots_patience_section, "modulate", Color.white, tween_duration)
 	coots_patience_value_label.text = "{0}%".format([str(int(coots_patience))])
-
-func _show_grade(tweener: SceneTreeTween, grade):
-	tweener.tween_property(grade_section, "modulate", Color.white, tween_duration)
-	grade_value_label.text = str(grade)
 
 func _show_button(tweener: SceneTreeTween):
 	tweener.tween_property(button_section, "modulate", Color.white, tween_duration)

@@ -367,13 +367,13 @@ margin_right = 0.269958
 margin_bottom = -0.0320129
 
 [node name="DrawingCount" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_right = 660.0
-margin_bottom = 45.0
+margin_right = 659.0
+margin_bottom = 59.0
 size_flags_vertical = 3
 
 [node name="Headings" type="Label" parent="UI/Result/Panel/Content/DrawingCount"]
-margin_right = 328.0
-margin_bottom = 45.0
+margin_right = 327.0
+margin_bottom = 59.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Drawing Count:"
@@ -381,23 +381,23 @@ align = 1
 valign = 1
 
 [node name="Value" type="Label" parent="UI/Result/Panel/Content/DrawingCount"]
-margin_left = 332.0
-margin_right = 660.0
-margin_bottom = 45.0
+margin_left = 331.0
+margin_right = 659.0
+margin_bottom = 59.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
 valign = 1
 
 [node name="AverageScore" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 49.0
-margin_right = 660.0
-margin_bottom = 94.0
+margin_top = 63.0
+margin_right = 659.0
+margin_bottom = 123.0
 size_flags_vertical = 3
 
 [node name="Headings" type="Label" parent="UI/Result/Panel/Content/AverageScore"]
-margin_right = 328.0
-margin_bottom = 45.0
+margin_right = 327.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Average Score:"
@@ -405,23 +405,23 @@ align = 1
 valign = 1
 
 [node name="Value" type="Label" parent="UI/Result/Panel/Content/AverageScore"]
-margin_left = 332.0
-margin_right = 660.0
-margin_bottom = 45.0
+margin_left = 331.0
+margin_right = 659.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
 valign = 1
 
 [node name="HealthRemaining" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 98.0
-margin_right = 660.0
-margin_bottom = 144.0
+margin_top = 127.0
+margin_right = 659.0
+margin_bottom = 187.0
 size_flags_vertical = 3
 
 [node name="Headings" type="Label" parent="UI/Result/Panel/Content/HealthRemaining"]
-margin_right = 328.0
-margin_bottom = 46.0
+margin_right = 327.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Health Remaining:"
@@ -429,23 +429,23 @@ align = 1
 valign = 1
 
 [node name="Value" type="Label" parent="UI/Result/Panel/Content/HealthRemaining"]
-margin_left = 332.0
-margin_right = 660.0
-margin_bottom = 46.0
+margin_left = 331.0
+margin_right = 659.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
 valign = 1
 
 [node name="CootsPatience" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 148.0
-margin_right = 660.0
-margin_bottom = 193.0
+margin_top = 191.0
+margin_right = 659.0
+margin_bottom = 251.0
 size_flags_vertical = 3
 
 [node name="Headings" type="Label" parent="UI/Result/Panel/Content/CootsPatience"]
-margin_right = 328.0
-margin_bottom = 45.0
+margin_right = 327.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Coots' Patience:"
@@ -453,40 +453,12 @@ align = 1
 valign = 1
 
 [node name="Value" type="Label" parent="UI/Result/Panel/Content/CootsPatience"]
-margin_left = 332.0
-margin_right = 660.0
-margin_bottom = 45.0
+margin_left = 331.0
+margin_right = 659.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
-valign = 1
-
-[node name="HSeparator" type="HSeparator" parent="UI/Result/Panel/Content"]
-margin_top = 197.0
-margin_right = 660.0
-margin_bottom = 201.0
-
-[node name="Grade" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 205.0
-margin_right = 660.0
-margin_bottom = 251.0
-size_flags_vertical = 3
-
-[node name="Headings" type="Label" parent="UI/Result/Panel/Content/Grade"]
-margin_right = 328.0
-margin_bottom = 46.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Grade:"
-align = 1
-valign = 1
-
-[node name="Value" type="Label" parent="UI/Result/Panel/Content/Grade"]
-margin_left = 332.0
-margin_right = 660.0
-margin_bottom = 46.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
 valign = 1
 
 [node name="Buttons" type="HBoxContainer" parent="UI/Result/Panel"]
