@@ -3,6 +3,14 @@ extends Area2D
 
 export(float, 0, 100) var annoyance := 5.0
 
+onready var sprite := $Sprite
+onready var animation_player := $AnimationPlayer
+
+var is_dying := false
+
+func _ready():
+	animation_player.play("DEFAULT")
+
 func attack(
 	target_position: Vector2, 
 	hanging_length: float, 
@@ -24,7 +32,6 @@ func hang(
 	)
 
 func hunt(tweener: SceneTreeTween, target_position: Vector2, duration: float):
-	monitoring = true
 	tweener.tween_property(self, "global_position:x", target_position.x, duration)  \
 		.set_trans(Tween.TRANS_LINEAR)
 	tweener.parallel() \
@@ -33,9 +40,18 @@ func hunt(tweener: SceneTreeTween, target_position: Vector2, duration: float):
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.pressed: queue_free() # TODO: Add animation.
+		if event.pressed: die()
 
 func _on_Spider_area_entered(area):
 	if area.name == "Coots": 
 		area.decrease_patience(annoyance)
-		queue_free() # TODO: Add animation.
+		die()
+
+func die():
+	if is_dying: return
+	is_dying = true
+	monitoring = false
+	GFX.shockwaves_gfx.play_shockwave(global_position, 1)
+	animation_player.play("DEAD")
+	yield(get_tree().create_timer(2), "timeout")
+	queue_free()
