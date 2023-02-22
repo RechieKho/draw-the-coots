@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 
 const anger_animation_map := ["RESET", "OPEN_RIGHT_EYE", "OPEN_LEFT_EYE", "ANGRY"]
@@ -16,7 +16,7 @@ export(float, 1, 100) var patience_reduce_rate := 10 # per seconds
 export(float, 1, 100) var patience_increase_rate := 10 # per call
 
 onready var shape_gen := CootsShapeGenerator.new()
-onready var collision_polygon := $Detector/CollisionPolygon2D
+onready var collision_polygon := $CollisionPolygon2D
 onready var body_texture := preload("res://assets/graphics/coots/coots-skin-texture.png") as Texture
 onready var patience : float = max_patience setget set_patience
 onready var animation_player := $AnimationPlayer
@@ -51,6 +51,8 @@ func reduce_anger():
 	anger_state = clamp(anger_state - 1, 0, len(anger_animation_map))
 
 func increase_patience(amount: float): set_patience(patience + amount)
+
+func decrease_patience(amount: float): set_patience(patience - amount)
 
 func set_patience(value : float):
 	patience = clamp(value, 0, max_patience)
