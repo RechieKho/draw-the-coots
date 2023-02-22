@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/fonts/Quicksand/static/Quicksand-Bold.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://scenes/drawing-stage/time-left-counter.gd" type="Script" id=13]
 [ext_resource path="res://scenes/drawing-stage/result.gd" type="Script" id=14]
+[ext_resource path="res://assets/audio/cat_music.ogg" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -560,6 +561,10 @@ patience_increase_rate = 5.0
 [node name="Pen" parent="." instance=ExtResource( 2 )]
 position = Vector2( 432, 330 )
 paper_region_path = NodePath("../Markings/PaperRegion")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
 
 [connection signal="on_hurting" from="UI/Bitten" to="UI/ProgressBars/HealthBar" method="reduce_health"]
 [connection signal="on_relieving" from="UI/Bitten" to="Coots" method="increase_patience"]
