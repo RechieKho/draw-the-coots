@@ -172,7 +172,7 @@ radius = 124.064
 [sub_resource type="CircleShape2D" id=7]
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 625.5, 70.5 )
+extents = Vector2( 185.5, 70.5 )
 
 [node name="DrawingStage" type="Node2D"]
 script = ExtResource( 1 )
@@ -318,7 +318,7 @@ script = ExtResource( 13 )
 
 [node name="DrawingTimer" type="Timer" parent="UI/TimeLeftCounter"]
 process_mode = 0
-wait_time = 10.0
+wait_time = 300.0
 one_shot = true
 autostart = true
 
@@ -542,27 +542,34 @@ paper_region_path = NodePath("../Markings/PaperRegion")
 stream = ExtResource( 15 )
 autoplay = true
 
-[node name="SpiderSpawner" type="CollisionShape2D" parent="."]
-position = Vector2( 637.5, -83.5 )
+[node name="SpawnTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+autostart = true
+
+[node name="SpiderSpawnerLeft" type="CollisionShape2D" parent="."]
+position = Vector2( 204, -83 )
 shape = SubResource( 19 )
 script = ExtResource( 16 )
 
-[node name="SpawnTimer" type="Timer" parent="SpiderSpawner"]
-process_mode = 0
-autostart = true
+[node name="SpiderSpawnerRight" type="CollisionShape2D" parent="."]
+position = Vector2( 1075, -83.5 )
+shape = SubResource( 19 )
+script = ExtResource( 16 )
 
 [connection signal="on_hurting" from="UI/Bitten" to="UI/ProgressBars/HealthBar" method="reduce_health"]
 [connection signal="on_relieving" from="UI/Bitten" to="Coots" method="increase_patience"]
 [connection signal="on_start_biting" from="UI/Bitten" to="Pen" method="set_is_grabbing" binds= [ false ]]
 [connection signal="timeout" from="UI/Bitten/BitingTimer" to="UI/Bitten" method="set_biting" binds= [ false ]]
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="SpiderSpawner/SpawnTimer" method="stop"]
+[connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="SpawnTimer" method="stop"]
 [connection signal="button_up" from="UI/Result/Panel/Buttons/RedrawButton" to="UI/Result" method="_on_RedrawButton_button_up"]
 [connection signal="area_exited" from="PenDetectors/AwayDetector" to="." method="_on_AwayDetector_area_exited"]
 [connection signal="area_entered" from="PenDetectors/ReturnDetector" to="." method="_on_ReturnDetector_area_entered"]
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]
 [connection signal="on_patience_changed" from="Coots" to="UI/ProgressBars/CootsPatienceMeter" method="update_patience_meter"]
 [connection signal="on_stroke" from="Pen" to="." method="add_stroke_point"]
-[connection signal="timeout" from="SpiderSpawner/SpawnTimer" to="SpiderSpawner" method="might_spawn_spider"]
+[connection signal="timeout" from="SpawnTimer" to="SpiderSpawnerLeft" method="might_spawn_spider"]
+[connection signal="timeout" from="SpawnTimer" to="SpiderSpawnerRight" method="might_spawn_spider"]
 
 [editable path="Pen"]

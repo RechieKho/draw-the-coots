@@ -236,7 +236,7 @@ collision_mask = 2
 script = ExtResource( 1 )
 outline_color = Color( 0.431373, 0.431373, 0.431373, 1 )
 outline_width = 5.0
-complexity = 69.0
+complexity = 30.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -286,3 +286,6 @@ anims/ANGRY = SubResource( 4 )
 anims/OPEN_LEFT_EYE = SubResource( 1 )
 anims/OPEN_RIGHT_EYE = SubResource( 2 )
 anims/RESET = SubResource( 3 )
+
+[connection signal="area_entered" from="." to="." method="_on_Coots_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Coots_area_exited"]

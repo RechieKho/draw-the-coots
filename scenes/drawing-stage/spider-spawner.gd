@@ -10,6 +10,7 @@ export(float, 0, 1) var spawning_chance := 0.5
 onready var target_node := get_node(target_node_path) as Node2D
 onready var rectangle := shape as RectangleShape2D
 
+
 func spawn_spider():
 	var spider_resource := preload("res://prefabs/spider/spider.tscn")
 	var spider := spider_resource.instance() as Node2D

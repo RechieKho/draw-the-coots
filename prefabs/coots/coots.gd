@@ -34,10 +34,10 @@ func _input_event(viewport, event, shape_idx):
 		if event.button_mask & BUTTON_LEFT:
 			set_patience(patience + patience_increase_rate * get_process_delta_time())
 
-func _on_Detector_area_entered(area):
+func _on_Coots_area_entered(area):
 	if area.name == "PenTip": is_angry = true
 
-func _on_Detector_area_exited(area):
+func _on_Coots_area_exited(area):
 	if area.name == "PenTip": is_angry = false
 
 func get_area(): return Math.calculate_area(shape)

@@ -2,6 +2,7 @@ extends Node2D
 
 
 export(Color) var pen_color := Color.black
+export(float, 0, 600) var difficulty_increment_duration := 230
 
 onready var coots := $Coots
 onready var pen := $Pen
@@ -14,6 +15,9 @@ var drawing_scores = []
 var points : PoolVector2Array = []
 
 func _ready():
+	create_tween().tween_property(
+		$SpawnTimer, "wait_time", 1.0, difficulty_increment_duration
+	)
 	setup_drawing()
 
 func _draw():
