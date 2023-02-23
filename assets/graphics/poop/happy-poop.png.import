@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spider.png-5d8c47e77f89722d55fb6d392814b297.stex"
+path="res://.import/happy-poop.png-68c7714025c8a890b56b213014123076.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/spider/spider.png"
-dest_files=[ "res://.import/spider.png-5d8c47e77f89722d55fb6d392814b297.stex" ]
+source_file="res://assets/graphics/poop/happy-poop.png"
+dest_files=[ "res://.import/happy-poop.png-68c7714025c8a890b56b213014123076.stex" ]
 
 [params]
 

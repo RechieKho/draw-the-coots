@@ -15,7 +15,7 @@
 [ext_resource path="res://scenes/drawing-stage/time-left-counter.gd" type="Script" id=13]
 [ext_resource path="res://scenes/drawing-stage/result.gd" type="Script" id=14]
 [ext_resource path="res://assets/audio/cat_music.ogg" type="AudioStream" id=15]
-[ext_resource path="res://scenes/drawing-stage/spider-spawner.gd" type="Script" id=16]
+[ext_resource path="res://scenes/drawing-stage/poop-spawner.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -548,12 +548,12 @@ process_mode = 0
 wait_time = 5.0
 autostart = true
 
-[node name="SpiderSpawnerLeft" type="CollisionShape2D" parent="."]
+[node name="PoopSpawnerLeft" type="CollisionShape2D" parent="."]
 position = Vector2( 204, -83 )
 shape = SubResource( 19 )
 script = ExtResource( 16 )
 
-[node name="SpiderSpawnerRight" type="CollisionShape2D" parent="."]
+[node name="PoopSpawnerRight" type="CollisionShape2D" parent="."]
 position = Vector2( 1075, -83.5 )
 shape = SubResource( 19 )
 script = ExtResource( 16 )
@@ -570,7 +570,7 @@ script = ExtResource( 16 )
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]
 [connection signal="on_patience_changed" from="Coots" to="UI/ProgressBars/CootsPatienceMeter" method="update_patience_meter"]
 [connection signal="on_stroke" from="Pen" to="." method="add_stroke_point"]
-[connection signal="timeout" from="SpawnTimer" to="SpiderSpawnerLeft" method="might_spawn_spider"]
-[connection signal="timeout" from="SpawnTimer" to="SpiderSpawnerRight" method="might_spawn_spider"]
+[connection signal="timeout" from="SpawnTimer" to="PoopSpawnerLeft" method="might_spawn_spider"]
+[connection signal="timeout" from="SpawnTimer" to="PoopSpawnerRight" method="might_spawn_spider"]
 
 [editable path="Pen"]

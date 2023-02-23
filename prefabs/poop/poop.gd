@@ -3,20 +3,19 @@ extends Area2D
 
 export(float, 0, 100) var annoyance := 5.0
 
-onready var sprite := $Sprite
 onready var animation_player := $AnimationPlayer
+onready var tweener = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).set_parallel(false) 
 
 var is_dying := false
 
 func _ready():
-	animation_player.play("DEFAULT")
+	animation_player.play("ROTATE")
 
 func attack(
 	target_position: Vector2, 
 	hanging_length: float, 
 	duration: float
 ):
-	var tweener = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).set_parallel(false)
 	hang(tweener, hanging_length, duration/2)
 	hunt(tweener, target_position, duration/2) 
 
@@ -45,13 +44,14 @@ func _input_event(viewport, event, shape_idx):
 func _on_Spider_area_entered(area):
 	if area.name == "Coots": 
 		area.decrease_patience(annoyance)
-		die()
+		die(true)
 
-func die():
+func die(ascend = false):
 	if is_dying: return
 	is_dying = true
+	tweener.stop()
 	set_deferred("monitoring", false)
-	GFX.shockwaves_gfx.play_shockwave(global_position, 1)
-	animation_player.play("DEAD")
+	animation_player.play("DEAD" if not ascend else "ASCEND")
+	if not ascend: $CPUParticles2D.restart()
 	yield(get_tree().create_timer(2), "timeout")
 	queue_free()

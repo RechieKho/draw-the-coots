@@ -12,7 +12,7 @@ onready var rectangle := shape as RectangleShape2D
 
 
 func spawn_spider():
-	var spider_resource := preload("res://prefabs/spider/spider.tscn")
+	var spider_resource := preload("res://prefabs/poop/poop.tscn")
 	var spider := spider_resource.instance() as Node2D
 	get_tree().current_scene.add_child(spider)
 	spider.global_position = Vector2(

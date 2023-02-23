@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spider.svg-5c9ed2f4d5ffba109a2348d827b9b9b0.stex"
+path="res://.import/poop.svg-3f15c2bc244449d70cd915d891680841.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/spider/spider.svg"
-dest_files=[ "res://.import/spider.svg-5c9ed2f4d5ffba109a2348d827b9b9b0.stex" ]
+source_file="res://assets/graphics/poop/poop.svg"
+dest_files=[ "res://.import/poop.svg-3f15c2bc244449d70cd915d891680841.stex" ]
 
 [params]
 
