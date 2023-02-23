@@ -57,7 +57,7 @@ func setup_drawing():
 
 func finish_drawing():
 	var drawing_area = Math.calculate_area(points)
-	var coots_area = coots.get_area()
+	var coots_area = coots.get_area() + 1000 # offset because a lot doesn't do well :(
 	var result = 1 - (abs(drawing_area - coots_area) / coots_area)
 	drawing_scores.append(result)
 	drawing_counter.text = str(len(drawing_scores))
