@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://prefabs/pen/pen.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/pen/pen.png" type="Texture" id=2]
@@ -9,6 +9,9 @@ radius = 28.0713
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 9.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 85.0529
 
 [sub_resource type="Animation" id=4]
 resource_name = "ACTIVE"
@@ -104,7 +107,7 @@ _data = [ Vector2( 0.0184564, -83.9264 ), 0.0, 0.0, 0, 0, Vector2( 0.354027, -4.
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.307047, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.548658, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Pen" type="Area2D"]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource( 1 )
@@ -120,6 +123,15 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PenTip"]
 shape = SubResource( 2 )
+
+[node name="Handle" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle"]
+position = Vector2( 59, -35 )
+shape = SubResource( 8 )
 
 [node name="Graphics" type="Sprite" parent="."]
 position = Vector2( 12, 0 )
@@ -151,5 +163,5 @@ angle_curve = SubResource( 6 )
 scale_amount = 0.5
 scale_amount_curve = SubResource( 7 )
 
-[connection signal="mouse_entered" from="." to="." method="_on_Pen_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_Pen_mouse_exited"]
+[connection signal="mouse_entered" from="Handle" to="." method="_on_Handle_mouse_entered"]
+[connection signal="mouse_exited" from="Handle" to="." method="_on_Handle_mouse_exited"]

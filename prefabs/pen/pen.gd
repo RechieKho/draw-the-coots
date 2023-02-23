@@ -11,13 +11,14 @@ onready var paper_region = get_node_or_null(paper_region_path)
 
 var is_grabbing := false
 var can_grab := false
+var position_offset := Vector2.ZERO
 
 
-func _on_Pen_mouse_entered(): 
+func _on_Handle_mouse_entered(): 
 	can_grab = true
 	if not is_grabbing: animation_player.play("ACTIVE")
 
-func _on_Pen_mouse_exited(): 
+func _on_Handle_mouse_exited(): 
 	can_grab = false
 	if not is_grabbing: animation_player.play_backwards("ACTIVE")
 
@@ -32,19 +33,20 @@ func set_is_grabbing(value: bool):
 	elif can_grab: animation_player.play_backwards("DRAW")
 	else: animation_player.play_backwards("ACTIVE")
 
-#func _unhandled_input(event): 
-#	if event is InputEventMouseButton:
-#		if can_grab:
-#			set_is_grabbing(event.pressed)
+func _unhandled_input(event): 
+	if event is InputEventMouseButton:
+		if event.pressed and can_grab:
+			position_offset = -get_local_mouse_position()
 
 func _process(_delta):
 	# inputs
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		if can_grab: set_is_grabbing(true)
+		if can_grab:
+			set_is_grabbing(true)
 	else: set_is_grabbing(false)
 	
 	# position
-	var global_mouse_position = get_global_mouse_position()
+	var global_mouse_position = get_global_mouse_position() + position_offset
 	if is_grabbing and (global_position - global_mouse_position).length_squared() > 0.01:
 		var clamped_position = null
 		if paper_region is Control: 
