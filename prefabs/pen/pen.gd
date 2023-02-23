@@ -25,6 +25,7 @@ func set_is_grabbing(value: bool):
 	if is_grabbing == value: return
 	is_grabbing = value
 	pen_tip.monitorable = value
+	pen_tip.monitoring = value
 	if value: 
 		animation_player.play("DRAW")
 		particles.emitting = true
