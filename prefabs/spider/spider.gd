@@ -50,7 +50,7 @@ func _on_Spider_area_entered(area):
 func die():
 	if is_dying: return
 	is_dying = true
-	monitoring = false
+	set_deferred("monitoring", false)
 	GFX.shockwaves_gfx.play_shockwave(global_position, 1)
 	animation_player.play("DEAD")
 	yield(get_tree().create_timer(2), "timeout")
