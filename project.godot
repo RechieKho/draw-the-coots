@@ -51,13 +51,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Draw the Coots"
-run/main_scene="res://scenes/drawing-stage/drawing-stage.tscn"
+run/main_scene="res://scenes/main-menu/main-menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Camera2DUtility="*res://prefabs/Camera/Camera2DUtility.gd"
 GFX="*res://prefabs/GFX/GFX.gd"
+BGM="*res://scripts/BGM.gd"
 
 [display]
 

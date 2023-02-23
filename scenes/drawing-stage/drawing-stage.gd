@@ -15,6 +15,8 @@ var drawing_scores = []
 var points : PoolVector2Array = []
 
 func _ready():
+	BGM.volume_db = 0
+	BGM.current_music = preload("res://assets/audio/Morning routine.wav")
 	create_tween().tween_property(
 		$SpawnTimer, "wait_time", 1.0, difficulty_increment_duration
 	)

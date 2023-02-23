@@ -70,3 +70,7 @@ func _show_button(tweener: SceneTreeTween):
 
 func _on_RedrawButton_button_up():
 	GFX.change_scene("res://scenes/drawing-stage/drawing-stage.tscn")
+
+
+func _on_ExitButton_button_up():
+	GFX.change_scene("res://scenes/main-menu/main-menu.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://assets/fonts/Quicksand/static/Quicksand-Bold.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://scenes/drawing-stage/time-left-counter.gd" type="Script" id=13]
 [ext_resource path="res://scenes/drawing-stage/result.gd" type="Script" id=14]
-[ext_resource path="res://assets/audio/cat_music.ogg" type="AudioStream" id=15]
 [ext_resource path="res://scenes/drawing-stage/poop-spawner.gd" type="Script" id=16]
 [ext_resource path="res://resources/theme/default-theme.tres" type="Theme" id=17]
 
@@ -405,7 +404,6 @@ size_flags_vertical = 6
 text = "Redraw"
 
 [node name="ExitButton" type="Button" parent="UI/Result/Panel/Buttons"]
-visible = false
 margin_left = 414.0
 margin_top = 16.0
 margin_right = 456.0
@@ -413,7 +411,7 @@ margin_bottom = 48.0
 rect_pivot_offset = Vector2( 35, 0 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
-text = "Exit"
+text = "Main Menu"
 
 [node name="Markings" type="CanvasLayer" parent="."]
 layer = 0
@@ -459,10 +457,6 @@ patience_increase_rate = 5.0
 position = Vector2( 432, 330 )
 paper_region_path = NodePath("../Markings/PaperRegion")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
-autoplay = true
-
 [node name="SpawnTimer" type="Timer" parent="."]
 process_mode = 0
 wait_time = 5.0
@@ -485,6 +479,7 @@ script = ExtResource( 16 )
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="SpawnTimer" method="stop"]
 [connection signal="button_up" from="UI/Result/Panel/Buttons/RedrawButton" to="UI/Result" method="_on_RedrawButton_button_up"]
+[connection signal="button_up" from="UI/Result/Panel/Buttons/ExitButton" to="UI/Result" method="_on_ExitButton_button_up"]
 [connection signal="area_exited" from="PenDetectors/AwayDetector" to="." method="_on_AwayDetector_area_exited"]
 [connection signal="area_entered" from="PenDetectors/ReturnDetector" to="." method="_on_ReturnDetector_area_entered"]
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]
