@@ -51,6 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Draw the Coots"
+run/main_scene="res://scenes/drawing-stage/drawing-stage.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -62,7 +63,8 @@ GFX="*res://prefabs/GFX/GFX.gd"
 
 window/size/width=1280
 window/size/height=720
-window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gui]
 

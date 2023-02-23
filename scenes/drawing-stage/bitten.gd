@@ -24,7 +24,7 @@ func _ready():
 func _input(event):
 	if biting_timer.is_stopped(): return
 	if event is InputEventMouseButton:
-		if event.doubleclick:
+		if event.pressed:
 			emit_signal("on_relieving", patience_click_increase_rate)
 			var new_biting_time = \
 				clamp(biting_timer.time_left - biting_time_click_reduce_rate, 0, max_biting_time)
