@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/drawing-stage/result.gd" type="Script" id=14]
 [ext_resource path="res://assets/audio/cat_music.ogg" type="AudioStream" id=15]
 [ext_resource path="res://scenes/drawing-stage/poop-spawner.gd" type="Script" id=16]
+[ext_resource path="res://resources/theme/default-theme.tres" type="Theme" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -84,87 +85,6 @@ corner_radius_bottom_left = 12
 shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.596078 )
 shadow_size = 1
 shadow_offset = Vector2( 0, 8 )
-
-[sub_resource type="DynamicFont" id=13]
-size = 25
-use_filter = true
-font_data = ExtResource( 12 )
-
-[sub_resource type="StyleBoxFlat" id=17]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0, 0.0705882, 0.0980392, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0.580392, 0.823529, 0.741176, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-shadow_color = Color( 0, 0.372549, 0.45098, 0.647059 )
-shadow_size = 2
-shadow_offset = Vector2( 1, 1 )
-
-[sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 0.0392157, 0.576471, 0.588235, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-
-[sub_resource type="StyleBoxFlat" id=16]
-bg_color = Color( 0, 0.372549, 0.45098, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-
-[sub_resource type="StyleBoxLine" id=18]
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
-thickness = 2
-
-[sub_resource type="DynamicFont" id=10]
-size = 22
-use_filter = true
-font_data = ExtResource( 8 )
-
-[sub_resource type="StyleBoxFlat" id=11]
-bg_color = Color( 0.847059, 0.847059, 0.847059, 1 )
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_color = Color( 0.12549, 0.12549, 0.12549, 0.596078 )
-shadow_size = 6
-shadow_offset = Vector2( 3, 3 )
-
-[sub_resource type="Theme" id=12]
-Button/colors/font_color = Color( 0.580392, 0.823529, 0.741176, 1 )
-Button/colors/font_color_hover = Color( 0.0392157, 0.576471, 0.588235, 1 )
-Button/fonts/font = SubResource( 13 )
-Button/styles/focus = SubResource( 17 )
-Button/styles/hover = SubResource( 14 )
-Button/styles/normal = SubResource( 15 )
-Button/styles/pressed = SubResource( 16 )
-HSeparator/styles/separator = SubResource( 18 )
-Label/colors/font_color = Color( 0.431373, 0.431373, 0.431373, 1 )
-Label/fonts/font = SubResource( 10 )
-Panel/styles/panel = SubResource( 11 )
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 124.064
@@ -342,7 +262,7 @@ margin_left = 205.0
 margin_top = 97.0
 margin_right = -205.0
 margin_bottom = -111.0
-theme = SubResource( 12 )
+theme = ExtResource( 17 )
 
 [node name="Title" type="Label" parent="UI/Result/Panel"]
 anchor_left = 0.167
