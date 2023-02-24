@@ -98,7 +98,7 @@ expand_margin_left = 5.0
 expand_margin_right = 5.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
-shadow_color = Color( 0, 0.372549, 0.45098, 0.647059 )
+shadow_color = Color( 0, 0, 0, 0.215686 )
 shadow_size = 10
 shadow_offset = Vector2( 2, 2 )
 
@@ -147,7 +147,7 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-shadow_color = Color( 0, 0.372549, 0.45098, 0.647059 )
+shadow_color = Color( 0, 0, 0, 0.215686 )
 shadow_size = 10
 shadow_offset = Vector2( 2, 2 )
 
