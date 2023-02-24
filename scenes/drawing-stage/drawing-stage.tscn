@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -20,6 +20,68 @@
 [ext_resource path="res://assets/graphics/timer/timer.png" type="Texture" id=18]
 [ext_resource path="res://assets/audio/select_006.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/audio/handleCoins.ogg" type="AudioStream" id=20]
+
+[sub_resource type="DynamicFont" id=20]
+size = 60
+outline_size = 6
+outline_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="Animation" id=21]
+resource_name = "DEFAULT"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bitting:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 130, -100 ), Vector2( 117, -108 ), Vector2( 95, -87 ), Vector2( 137, -93 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bitting:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 130, -100 ) ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -129,11 +191,8 @@ health_reduce_rate = 10.0
 [node name="Contents" type="Control" parent="UI/Bitten"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -1000.0
-margin_bottom = -1000.0
-__meta__ = {
-"_edit_group_": true
-}
+margin_top = -1040.0
+margin_bottom = -1040.0
 
 [node name="DangerStrips" type="TextureRect" parent="UI/Bitten/Contents"]
 anchor_right = 1.0
@@ -154,6 +213,25 @@ margin_bottom = -52.0
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 6
+
+[node name="Label" type="Label" parent="UI/Bitten/Contents"]
+anchor_left = 0.312
+anchor_top = 0.597
+anchor_right = 0.705
+anchor_bottom = 0.701
+margin_left = 0.639984
+margin_top = 0.160004
+margin_right = -0.400024
+margin_bottom = 0.279968
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 20 )
+text = "SPAM CLICK"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Bitten/Contents"]
+anims/DEFAULT = SubResource( 21 )
+anims/RESET = SubResource( 22 )
 
 [node name="BitingTimer" type="Timer" parent="UI/Bitten"]
 one_shot = true

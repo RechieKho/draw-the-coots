@@ -15,6 +15,7 @@ export(float, 0, 50) var max_biting_time := 10
 onready var biting_timer := $BitingTimer
 onready var contents := $Contents
 onready var dim_color := modulate
+onready var animation_player := $Contents/AnimationPlayer
 
 func _ready():
 	visible = true # I might turn off visible in editor.
@@ -42,6 +43,7 @@ func set_biting(value: bool) :
 	var tweener := create_tween() \
 		.set_parallel().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	if value:
+		animation_player.play("DEFAULT")
 		emit_signal("on_start_biting")
 		mouse_filter = Control.MOUSE_FILTER_STOP
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -49,6 +51,7 @@ func set_biting(value: bool) :
 		tweener.tween_property(contents, "rect_position", Vector2.ZERO, tween_duration)
 		biting_timer.start(max_biting_time)
 	else:
+		animation_player.play("RESET")
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 		tweener.tween_property(self, "modulate", Color.transparent, tween_duration)
 		tweener.tween_property(contents, "rect_position", Vector2(0, -1000), tween_duration)
