@@ -152,7 +152,7 @@ shadow_size = 10
 shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 244.074
+radius = 329.607
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 42.0476
@@ -560,6 +560,7 @@ shape = SubResource( 7 )
 
 [node name="Coots" parent="." instance=ExtResource( 3 )]
 position = Vector2( 634, 345 )
+size = 120.0
 patience_reduce_rate = 30.0
 patience_increase_rate = 5.0
 
