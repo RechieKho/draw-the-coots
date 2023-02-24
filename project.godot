@@ -67,6 +67,10 @@ window/size/height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[editor]
+
+main_run_args="--verbose"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
