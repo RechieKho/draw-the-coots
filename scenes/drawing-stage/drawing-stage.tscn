@@ -177,7 +177,6 @@ texture = ExtResource( 7 )
 layer = 0
 
 [node name="Bitten" type="ColorRect" parent="UI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.196078, 0.196078, 0.196078, 0.658824 )
@@ -208,8 +207,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 130.0
 margin_top = -100.0
-margin_right = 203.0
-margin_bottom = -52.0
+margin_right = 157.0
+margin_bottom = -107.0
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 6
