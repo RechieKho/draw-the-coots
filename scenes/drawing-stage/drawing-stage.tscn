@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://scenes/drawing-stage/poop-spawner.gd" type="Script" id=16]
 [ext_resource path="res://resources/theme/default-theme.tres" type="Theme" id=17]
 [ext_resource path="res://assets/graphics/timer/timer.png" type="Texture" id=18]
+[ext_resource path="res://assets/audio/select_006.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/audio/handleCoins.ogg" type="AudioStream" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -122,6 +124,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 tween_duration = 0.25
+health_reduce_rate = 10.0
 
 [node name="Contents" type="Control" parent="UI/Bitten"]
 anchor_right = 1.0
@@ -207,7 +210,7 @@ text = "Health"
 align = 1
 valign = 1
 
-[node name="DrawingCounter" type="Label" parent="UI"]
+[node name="MoneyCounter" type="Label" parent="UI"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 268.0
@@ -221,7 +224,7 @@ text = "0"
 align = 1
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="UI/DrawingCounter"]
+[node name="TextureRect" type="TextureRect" parent="UI/MoneyCounter"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -55.0
@@ -306,62 +309,38 @@ margin_top = -0.152008
 margin_right = 0.269958
 margin_bottom = -0.0320129
 
-[node name="DrawingCount" type="HBoxContainer" parent="UI/Result/Panel/Content"]
+[node name="Money" type="HBoxContainer" parent="UI/Result/Panel/Content"]
 margin_right = 659.0
-margin_bottom = 59.0
+margin_bottom = 57.0
 size_flags_vertical = 3
 
-[node name="Headings" type="Label" parent="UI/Result/Panel/Content/DrawingCount"]
+[node name="Headings" type="Label" parent="UI/Result/Panel/Content/Money"]
 margin_right = 327.0
-margin_bottom = 59.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Drawing Count:"
+text = "Money: "
 align = 1
 valign = 1
 
-[node name="Value" type="Label" parent="UI/Result/Panel/Content/DrawingCount"]
+[node name="Value" type="Label" parent="UI/Result/Panel/Content/Money"]
 margin_left = 331.0
 margin_right = 659.0
-margin_bottom = 59.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "0"
-valign = 1
-
-[node name="AverageScore" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 63.0
-margin_right = 659.0
-margin_bottom = 123.0
-size_flags_vertical = 3
-
-[node name="Headings" type="Label" parent="UI/Result/Panel/Content/AverageScore"]
-margin_right = 327.0
-margin_bottom = 60.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Average Score:"
-align = 1
-valign = 1
-
-[node name="Value" type="Label" parent="UI/Result/Panel/Content/AverageScore"]
-margin_left = 331.0
-margin_right = 659.0
-margin_bottom = 60.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
 valign = 1
 
 [node name="HealthRemaining" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 127.0
+margin_top = 61.0
 margin_right = 659.0
-margin_bottom = 187.0
+margin_bottom = 119.0
 size_flags_vertical = 3
 
 [node name="Headings" type="Label" parent="UI/Result/Panel/Content/HealthRemaining"]
 margin_right = 327.0
-margin_bottom = 60.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Health Remaining:"
@@ -371,21 +350,21 @@ valign = 1
 [node name="Value" type="Label" parent="UI/Result/Panel/Content/HealthRemaining"]
 margin_left = 331.0
 margin_right = 659.0
-margin_bottom = 60.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
 valign = 1
 
 [node name="CootsPatience" type="HBoxContainer" parent="UI/Result/Panel/Content"]
-margin_top = 191.0
+margin_top = 123.0
 margin_right = 659.0
-margin_bottom = 251.0
+margin_bottom = 181.0
 size_flags_vertical = 3
 
 [node name="Headings" type="Label" parent="UI/Result/Panel/Content/CootsPatience"]
 margin_right = 327.0
-margin_bottom = 60.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Coots' Patience:"
@@ -395,10 +374,39 @@ valign = 1
 [node name="Value" type="Label" parent="UI/Result/Panel/Content/CootsPatience"]
 margin_left = 331.0
 margin_right = 659.0
-margin_bottom = 60.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "0"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Result/Panel/Content"]
+margin_top = 185.0
+margin_right = 659.0
+margin_bottom = 189.0
+
+[node name="Grade" type="HBoxContainer" parent="UI/Result/Panel/Content"]
+margin_top = 193.0
+margin_right = 659.0
+margin_bottom = 251.0
+size_flags_vertical = 3
+
+[node name="Headings" type="Label" parent="UI/Result/Panel/Content/Grade"]
+margin_right = 327.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Coots' comment:"
+align = 1
+valign = 1
+
+[node name="Value" type="Label" parent="UI/Result/Panel/Content/Grade"]
+margin_left = 331.0
+margin_right = 659.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Poor... :("
 valign = 1
 
 [node name="Buttons" type="HBoxContainer" parent="UI/Result/Panel"]
@@ -415,23 +423,27 @@ __meta__ = {
 }
 
 [node name="RedrawButton" type="Button" parent="UI/Result/Panel/Buttons"]
-margin_left = 242.0
+margin_left = 96.0
 margin_top = 16.0
-margin_right = 336.0
+margin_right = 190.0
 margin_bottom = 48.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Redraw"
 
 [node name="ExitButton" type="Button" parent="UI/Result/Panel/Buttons"]
-margin_left = 414.0
+margin_left = 370.0
 margin_top = 16.0
-margin_right = 456.0
+margin_right = 499.0
 margin_bottom = 48.0
 rect_pivot_offset = Vector2( 35, 0 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Main Menu"
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="UI/Result"]
+stream = ExtResource( 19 )
+bus = "FX"
 
 [node name="Markings" type="CanvasLayer" parent="."]
 layer = 0
@@ -491,6 +503,10 @@ script = ExtResource( 16 )
 position = Vector2( 1075, -83.5 )
 shape = SubResource( 19 )
 script = ExtResource( 16 )
+
+[node name="MoneySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+bus = "FX"
 
 [connection signal="on_hurting" from="UI/Bitten" to="UI/ProgressBars/HealthBar" method="reduce_health"]
 [connection signal="on_relieving" from="UI/Bitten" to="Coots" method="increase_patience"]
