@@ -25,8 +25,8 @@ func _on_Handle_mouse_exited():
 func set_is_grabbing(value: bool):
 	if is_grabbing == value: return
 	is_grabbing = value
-	pen_tip.monitorable = value
-	pen_tip.monitoring = value
+	pen_tip.set_deferred("monitorable", value)
+	pen_tip.set_deferred("monitoring", value)
 	if value: 
 		animation_player.play("DRAW")
 		particles.emitting = true
