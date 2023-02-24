@@ -90,7 +90,7 @@ shadow_size = 10
 shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 124.064
+radius = 244.074
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 42.0476
