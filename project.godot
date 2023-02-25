@@ -51,8 +51,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Draw the Coots"
+config/description="As a aspiring artist, you want to be rich. So you draw what everybody loves, Coots."
 run/main_scene="res://scenes/main-menu/main-menu.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://assets/graphics/logo/logo.ico"
 
 [autoload]
 
@@ -81,4 +85,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/sharpen_intensity=0.1
+quality/driver/fallback_to_gles2=true
+environment/default_clear_color=Color( 0.0392157, 0.576471, 0.588235, 1 )
 environment/default_environment="res://default_env.tres"
