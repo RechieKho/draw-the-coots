@@ -31,6 +31,7 @@ func show_result(
 	health_remaining,
 	coots_patience
 ):
+	get_tree().paused = true
 	var tweener := create_tween() \
 		.set_parallel(false) \
 		.set_ease(Tween.EASE_IN_OUT) \
@@ -77,10 +78,12 @@ func _show_button(tweener: SceneTreeTween):
 
 
 func _on_RedrawButton_button_up():
+	get_tree().paused = false
 	$ButtonSound.play()
 	GFX.change_scene("res://scenes/drawing-stage/drawing-stage.tscn")
 
 
 func _on_ExitButton_button_up():
+	get_tree().paused = false
 	$ButtonSound.play()
 	GFX.change_scene("res://scenes/main-menu/main-menu.tscn")
