@@ -211,8 +211,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 130.0
 margin_top = -100.0
-margin_right = 157.0
-margin_bottom = -107.0
+margin_right = 216.0
+margin_bottom = -90.0
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 6
@@ -346,6 +346,18 @@ margin_top = -33.5
 margin_right = 18.0
 margin_bottom = 33.5
 texture = ExtResource( 18 )
+
+[node name="ShopButton" type="Button" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -99.0
+margin_right = 30.0
+margin_bottom = -67.0
+theme = ExtResource( 17 )
+text = "Shop"
 
 [node name="Result" type="ColorRect" parent="UI"]
 visible = false
@@ -526,18 +538,6 @@ text = "Main Menu"
 [node name="ButtonSound" type="AudioStreamPlayer" parent="UI/Result"]
 stream = ExtResource( 19 )
 bus = "FX"
-
-[node name="ShopButton" type="Button" parent="UI"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -32.0
-margin_top = -99.0
-margin_right = 30.0
-margin_bottom = -67.0
-theme = ExtResource( 17 )
-text = "Shop"
 
 [node name="Shop" type="ColorRect" parent="UI"]
 visible = false
@@ -813,9 +813,9 @@ bus = "FX"
 [connection signal="timeout" from="UI/Bitten/BitingTimer" to="UI/Bitten" method="set_biting" binds= [ false ]]
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="SpawnTimer" method="stop"]
+[connection signal="button_up" from="UI/ShopButton" to="UI/Shop" method="show_shop"]
 [connection signal="button_up" from="UI/Result/Panel/Buttons/RedrawButton" to="UI/Result" method="_on_RedrawButton_button_up"]
 [connection signal="button_up" from="UI/Result/Panel/Buttons/ExitButton" to="UI/Result" method="_on_ExitButton_button_up"]
-[connection signal="button_up" from="UI/ShopButton" to="UI/Shop" method="show_shop"]
 [connection signal="button_up" from="UI/Shop/Panel/Content/Bandage/Items/BuyButton" to="UI/Shop" method="buy_bandage"]
 [connection signal="button_up" from="UI/Shop/Panel/Content/Patience/Items/BuyButton" to="UI/Shop" method="buy_patience"]
 [connection signal="button_up" from="UI/Shop/Panel/Content/PoopMoney/Items/BuyButton" to="UI/Shop" method="buy_poop"]

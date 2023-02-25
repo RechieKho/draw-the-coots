@@ -31,6 +31,7 @@ func show_result(
 	health_remaining,
 	coots_patience
 ):
+	mouse_filter = MOUSE_FILTER_IGNORE
 	get_tree().paused = true
 	var tweener := create_tween() \
 		.set_parallel(false) \
