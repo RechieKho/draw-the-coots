@@ -13,7 +13,7 @@ export(float, 1, 2) var fatness := 1.5
 export(float, 1, 100) var complexity := 80
 export(float, 1, 100) var max_patience := 100
 export(float, 1, 100) var patience_reduce_rate := 10 # per seconds
-export(float, 1, 100) var patience_increase_rate := 10 # per call
+export(float, 1, 100) var patience_increase_rate := 10 # per seconds
 
 onready var shape_gen := CootsShapeGenerator.new()
 onready var collision_polygon := $CollisionPolygon2D

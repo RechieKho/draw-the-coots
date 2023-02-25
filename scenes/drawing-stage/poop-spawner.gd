@@ -15,6 +15,7 @@ func spawn_spider():
 	var spider_resource := preload("res://prefabs/poop/poop.tscn")
 	var spider := spider_resource.instance() as Node2D
 	get_tree().current_scene.add_child(spider)
+	spider.connect("on_poop_destroyed", get_tree().current_scene, "on_poop_destroyed")
 	spider.global_position = Vector2(
 		rand_range(global_position.x - rectangle.extents.x, global_position.x + rectangle.extents.x),
 		rand_range(global_position.y - rectangle.extents.y, global_position.y + rectangle.extents.y)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/drawing-stage/drawing-stage.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/pen/Pen.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://assets/graphics/timer/timer.png" type="Texture" id=18]
 [ext_resource path="res://assets/audio/select_006.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/audio/handleCoins.ogg" type="AudioStream" id=20]
+[ext_resource path="res://scenes/drawing-stage/shop.gd" type="Script" id=21]
+[ext_resource path="res://assets/audio/error_004.ogg" type="AudioStream" id=22]
 
 [sub_resource type="DynamicFont" id=20]
 size = 60
@@ -174,9 +176,11 @@ position = Vector2( 640, 358 )
 texture = ExtResource( 7 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
 layer = 0
 
 [node name="Bitten" type="ColorRect" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.196078, 0.196078, 0.196078, 0.658824 )
@@ -328,6 +332,7 @@ valign = 1
 script = ExtResource( 13 )
 
 [node name="DrawingTimer" type="Timer" parent="UI/TimeLeftCounter"]
+pause_mode = 1
 process_mode = 0
 wait_time = 300.0
 one_shot = true
@@ -522,6 +527,222 @@ text = "Main Menu"
 stream = ExtResource( 19 )
 bus = "FX"
 
+[node name="ShopButton" type="Button" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -99.0
+margin_right = 30.0
+margin_bottom = -67.0
+theme = ExtResource( 17 )
+text = "Shop"
+
+[node name="Shop" type="ColorRect" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.12549, 0.12549, 0.12549, 0.596078 )
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Panel" type="Panel" parent="UI/Shop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 205.0
+margin_top = 97.0
+margin_right = -205.0
+margin_bottom = -111.0
+theme = ExtResource( 17 )
+
+[node name="Title" type="Label" parent="UI/Shop/Panel"]
+anchor_left = 0.167
+anchor_top = 0.05
+anchor_right = 0.833
+anchor_bottom = 0.133
+margin_left = -0.274002
+margin_top = 0.1
+margin_right = 0.273926
+margin_bottom = -0.234001
+text = "Shop"
+align = 1
+valign = 1
+
+[node name="Content" type="VBoxContainer" parent="UI/Shop/Panel"]
+anchor_left = 0.121
+anchor_top = 0.221
+anchor_right = 0.879
+anchor_bottom = 0.711
+margin_left = -0.269997
+margin_top = -0.152
+margin_right = 0.27002
+margin_bottom = -0.0320129
+
+[node name="Bandage" type="MarginContainer" parent="UI/Shop/Panel/Content"]
+margin_right = 660.0
+margin_bottom = 80.0
+size_flags_vertical = 3
+custom_constants/margin_top = 12
+custom_constants/margin_bottom = 12
+
+[node name="Items" type="HBoxContainer" parent="UI/Shop/Panel/Content/Bandage"]
+margin_top = 12.0
+margin_right = 660.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+
+[node name="Logo" type="TextureRect" parent="UI/Shop/Panel/Content/Bandage/Items"]
+margin_bottom = 56.0
+
+[node name="Description" type="Label" parent="UI/Shop/Panel/Content/Bandage/Items"]
+margin_left = 4.0
+margin_right = 303.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Heal"
+align = 1
+valign = 1
+
+[node name="Cost" type="Label" parent="UI/Shop/Panel/Content/Bandage/Items"]
+margin_left = 307.0
+margin_right = 607.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "3"
+align = 1
+valign = 1
+
+[node name="BuyButton" type="Button" parent="UI/Shop/Panel/Content/Bandage/Items"]
+margin_left = 611.0
+margin_right = 660.0
+margin_bottom = 56.0
+text = "BUY"
+
+[node name="Patience" type="MarginContainer" parent="UI/Shop/Panel/Content"]
+margin_top = 84.0
+margin_right = 660.0
+margin_bottom = 167.0
+size_flags_vertical = 3
+custom_constants/margin_top = 12
+custom_constants/margin_bottom = 12
+
+[node name="Items" type="HBoxContainer" parent="UI/Shop/Panel/Content/Patience"]
+margin_top = 12.0
+margin_right = 660.0
+margin_bottom = 71.0
+size_flags_vertical = 3
+
+[node name="Logo" type="TextureRect" parent="UI/Shop/Panel/Content/Patience/Items"]
+margin_bottom = 59.0
+
+[node name="Description" type="Label" parent="UI/Shop/Panel/Content/Patience/Items"]
+margin_left = 4.0
+margin_right = 303.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "More patience
+when petting"
+align = 1
+valign = 1
+
+[node name="Cost" type="Label" parent="UI/Shop/Panel/Content/Patience/Items"]
+margin_left = 307.0
+margin_right = 607.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "7"
+align = 1
+valign = 1
+
+[node name="BuyButton" type="Button" parent="UI/Shop/Panel/Content/Patience/Items"]
+margin_left = 611.0
+margin_right = 660.0
+margin_bottom = 59.0
+text = "BUY"
+
+[node name="PoopMoney" type="MarginContainer" parent="UI/Shop/Panel/Content"]
+margin_top = 171.0
+margin_right = 660.0
+margin_bottom = 251.0
+size_flags_vertical = 3
+custom_constants/margin_top = 12
+custom_constants/margin_bottom = 12
+
+[node name="Items" type="HBoxContainer" parent="UI/Shop/Panel/Content/PoopMoney"]
+margin_top = 12.0
+margin_right = 660.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+
+[node name="Logo" type="TextureRect" parent="UI/Shop/Panel/Content/PoopMoney/Items"]
+margin_bottom = 56.0
+
+[node name="Description" type="Label" parent="UI/Shop/Panel/Content/PoopMoney/Items"]
+margin_left = 4.0
+margin_right = 303.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Poop money?"
+align = 1
+valign = 1
+
+[node name="Cost" type="Label" parent="UI/Shop/Panel/Content/PoopMoney/Items"]
+margin_left = 307.0
+margin_right = 607.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "15"
+align = 1
+valign = 1
+
+[node name="BuyButton" type="Button" parent="UI/Shop/Panel/Content/PoopMoney/Items"]
+margin_left = 611.0
+margin_right = 660.0
+margin_bottom = 56.0
+text = "BUY"
+
+[node name="Buttons" type="HBoxContainer" parent="UI/Shop/Panel"]
+anchor_left = 0.167
+anchor_top = 0.799
+anchor_right = 0.833
+anchor_bottom = 0.926
+margin_left = -0.274002
+margin_top = 0.0979919
+margin_right = 0.273926
+margin_bottom = -0.148041
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ExitButton" type="Button" parent="UI/Shop/Panel/Buttons"]
+margin_left = 268.0
+margin_top = 16.0
+margin_right = 310.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 35, 0 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Exit"
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="UI/Shop"]
+stream = ExtResource( 19 )
+bus = "FX"
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="UI/Shop"]
+stream = ExtResource( 22 )
+bus = "FX"
+
 [node name="Markings" type="CanvasLayer" parent="."]
 layer = 0
 visible = false
@@ -594,6 +815,11 @@ bus = "FX"
 [connection signal="timeout" from="UI/TimeLeftCounter/DrawingTimer" to="SpawnTimer" method="stop"]
 [connection signal="button_up" from="UI/Result/Panel/Buttons/RedrawButton" to="UI/Result" method="_on_RedrawButton_button_up"]
 [connection signal="button_up" from="UI/Result/Panel/Buttons/ExitButton" to="UI/Result" method="_on_ExitButton_button_up"]
+[connection signal="button_up" from="UI/ShopButton" to="UI/Shop" method="show_shop"]
+[connection signal="button_up" from="UI/Shop/Panel/Content/Bandage/Items/BuyButton" to="UI/Shop" method="buy_bandage"]
+[connection signal="button_up" from="UI/Shop/Panel/Content/Patience/Items/BuyButton" to="UI/Shop" method="buy_patience"]
+[connection signal="button_up" from="UI/Shop/Panel/Content/PoopMoney/Items/BuyButton" to="UI/Shop" method="buy_poop"]
+[connection signal="button_up" from="UI/Shop/Panel/Buttons/ExitButton" to="UI/Shop" method="hide_shop"]
 [connection signal="area_exited" from="PenDetectors/AwayDetector" to="." method="_on_AwayDetector_area_exited"]
 [connection signal="area_entered" from="PenDetectors/ReturnDetector" to="." method="_on_ReturnDetector_area_entered"]
 [connection signal="on_lost_control" from="Coots" to="UI/Bitten" method="set_biting" binds= [ true ]]

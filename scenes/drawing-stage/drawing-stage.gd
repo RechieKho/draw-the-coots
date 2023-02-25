@@ -3,6 +3,7 @@ extends Node2D
 
 export(Color) var pen_color := Color.black
 export(float, 0, 600) var difficulty_increment_duration := 230
+export(int, 0, 10) var poop_value := 0 
 
 onready var coots := $Coots
 onready var pen := $Pen
@@ -69,3 +70,13 @@ func add_stroke_point(point):
 	points.append(point)
 	update()
 
+func use_money(amount):
+	if money < amount: return false
+	money -= amount
+	money_counter.text = "${0}".format([money])
+	return true
+
+func on_poop_destroyed():
+	if poop_value != 0: $MoneySound.play()
+	money += poop_value
+	money_counter.text = "${0}".format([money])

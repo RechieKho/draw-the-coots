@@ -1,5 +1,6 @@
 extends Area2D
 
+signal on_poop_destroyed
 
 export(float, 0, 100) var annoyance := 5.0
 
@@ -52,6 +53,8 @@ func die(ascend = false):
 	tweener.stop()
 	set_deferred("monitoring", false)
 	animation_player.play("DEAD" if not ascend else "ASCEND")
-	if not ascend: $CPUParticles2D.restart()
+	if not ascend: 
+		$CPUParticles2D.restart()
+		emit_signal("on_poop_destroyed")
 	yield(get_tree().create_timer(2), "timeout")
 	queue_free()
