@@ -6,9 +6,11 @@ export(NodePath) var money_manager_path := @"../../"
 export(NodePath) var health_path := @"../ProgressBars/HealthBar"
 export(NodePath) var coots_path := @"../../Coots"
 
-export(int, 1, 20) var bandage_cost := 3
-export(int, 1, 20) var patience_cost := 7
-export(int, 1, 20) var poop_cost := 15
+export(int, 1, 100) var bandage_cost := 10
+export(int, 1, 100) var patience_cost := 25
+export(int, 1, 100) var patience_cost_rate := 10
+export(int, 1, 100) var poop_cost := 40
+export(int, 1, 100) var poop_cost_rate := 10
 
 onready var dim_color := color
 onready var panel := $Panel as Panel
@@ -63,10 +65,14 @@ func buy_patience():
 	if money_manager.use_money(patience_cost): 
 		coots.patience_increase_rate += 10
 		button_audio_player.play()
+		patience_cost += patience_cost_rate
+		patience_cost_label.text = "${0}".format([patience_cost])
 	else : error_audio_player.play()
 
 func buy_poop():
 	if money_manager.use_money(poop_cost): 
 		money_manager.poop_value += 2
 		button_audio_player.play()
+		poop_cost += poop_cost_rate
+		poop_cost_label.text = "${0}".format([poop_cost])
 	else : error_audio_player.play()
