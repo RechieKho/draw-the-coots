@@ -59,8 +59,10 @@ func finish_drawing():
 	var coots_area = coots.get_area() + 1000 # offset because a lot doesn't do well :(
 	var result = 1 - (abs(drawing_area - coots_area) / coots_area)
 	money += 1
-	if result > 0.5: money += 1
-	elif result > 0.8: money += 4
+	if result < 0.2: money += 1
+	elif result < 0.4: money += 3
+	elif result < 0.6: money += 7
+	elif result < 1.0: money += 10
 	$MoneySound.play()
 	money_counter.text = "${0}".format([money])
 	points.resize(0)
