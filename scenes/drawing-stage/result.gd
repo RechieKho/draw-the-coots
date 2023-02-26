@@ -44,11 +44,11 @@ func show_result(
 	_show_coots_patience(tweener, coots_patience)
 	
 	var grade : String
-	if money < 5: grade = "Poor... :("
-	elif money < 20: grade = "Cool, you have money."
-	elif money < 40: grade = "Damn, you have a lot of money"
-	elif money < 70: grade = "DAMN, you are RICH!"
-	elif money < 100: grade = "Super RICH!!!"
+	if money < 100: grade = "Poor... :("
+	elif money < 300: grade = "Cool, you have money."
+	elif money < 500: grade = "Damn, you have a lot of money"
+	elif money < 800: grade = "DAMN, you are RICH!"
+	elif money < 1500: grade = "Super RICH!!!"
 	else: grade = "You are as RICH as Mr. Krab!!!"
 	
 	_show_grade(tweener, grade)
