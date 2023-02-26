@@ -8,4 +8,4 @@ func _ready():
 
 func _on_Button_button_up():
 	$ButtonSound.play()
-	GFX.change_scene("res://scenes/drawing-stage/drawing-stage.tscn")
+	GFX.change_scene("res://scenes/tutorial/tutorial.tscn")
