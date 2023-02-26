@@ -2,7 +2,7 @@ extends Node2D
 
 
 export(Color) var pen_color := Color.black
-export(float, 0, 600) var difficulty_increment_duration := 230
+export(float, 0, 600) var difficulty_increment_duration := 150
 export(int, 0, 10) var poop_value := 0 
 
 onready var coots := $Coots
